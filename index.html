@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Handlers and this</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- when clicked, logs out its id and text content -->
     <button id="click-btn">Click Here!</button>
 
     <h1 id="timer"></h1>
@@ -15,31 +17,38 @@
 const buttonEl = document.querySelector('#click-btn')
 buttonEl.addEventListener('click', handleClick)
 
-
 function handleClick(){
     console.log('Button Id:',this.id)
     console.log('TextContent: ',this.textContent)
 }
 
 // Reusable Component and Closure and this
-function createTimer(duration, elementId){
-    const displayEl = document.querySelector(elementId)
-    let timer = duration
+function createTimer(duration, elementId) {
+    let timer = duration;
 
-    function countDown(){
-        displayEl.textContent = timer
-        timer--
-        if (timer >= 0){
-            setTimeout(countDown, 1000)
+    const timerObj = {
+        element: document.querySelector(elementId),
+
+        start: function() {
+            const countDown = () => {
+                this.element.textContent = timer;
+                
+                if (timer > 0) {
+                    timer--;
+                    setTimeout(countDown, 1000);
+                } else {
+                    this.element.textContent = 'Time elapsed';
+                }
+            };
+            countDown();
         }
-        else {
-            return displayEl.textContent = 'Time elapsed'
-        }
-    }
-    
-    countDown()  
+    };
+
+    return timerObj;
 }
-createTimer(10, '#timer');
+const startTimer = createTimer(10, '#timer');
+startTimer.start();
+
     </script>
 </body>
 </html>
