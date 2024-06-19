@@ -10,7 +10,7 @@ Person.greet()
 
 const anotherPerson = {
     name: 'Esi',
-    age: 100.
+    age: 100
 }
 // using call
 Person.greet.call(anotherPerson)
@@ -19,24 +19,12 @@ Person.greet.call(anotherPerson)
 Person.greet.apply(anotherPerson)
 
 // using bind
-Person.greet.call(anotherPerson)
-
-
-// Event Handlers and this
-
-// const buttonEl = document.createElement('button')
-// buttonEl.setAttribute('id','btn')
-// buttonEl.textContent = 'Click Me'
-
-// document.body.appendChild(buttonEl)
-// buttonEl.addEventListener('click', handleClick)
-
-
-// function handleClick(){
-//     console.log(this.id)
-//     console.log(this.textContent)
-// }
-
+const p1 = {
+    name: 'Bob',
+    age:2
+}
+const p = Person.greet.bind(p1)
+p()
 
 
 
@@ -49,6 +37,7 @@ function createCounter(){
         increment: function(){
             count++
             console.log(this.count)
+            // this.count returns undefined because count is a variable and not an object property of the returned value from createCounter
         },
         getCount: function(){
             return count
@@ -61,16 +50,3 @@ const result = createCounter()
 result.increment()
 result.getCount()
 
-// Reusable Component and Closure and this
-// function createTimer(duration, elementId){
-//     // const displayEl = document.querySelector(elementId)
-//     for (let i = duration; i >= 0; i--){
-//         this.textContent = i
-//         // console.log(i)
-
-//         if (i === 0){
-//             return displayEl.textContent = 'Time elapsed'
-//         }
-//     }
-// }
-// console.log(createTimer(5))
