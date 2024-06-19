@@ -23,6 +23,21 @@ function handleClick(){
 }
 
 // Reusable Component and Closure and this
+// function createTimer(duration, elementId) {
+//     let timer = duration
+//     const displayEl = document.getElementById(elementId)
+//     displayEl.textContent = timer
+//     return function countDown(){
+//         if (timer > 0){
+//             displayEl.textContent = timer
+//             timer--
+//             setTimeout(countDown, 1000)
+//         }
+//         else {
+//             displayEl.textContent = 'Time Elapsed'
+//         }
+//     }
+// }
 function createTimer(duration, elementId) {
     let timer = duration;
 
