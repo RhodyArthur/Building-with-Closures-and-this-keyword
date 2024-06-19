@@ -38,6 +38,7 @@ function createCounter(){
             count++
             console.log(this.count)
             // this.count returns undefined because count is a variable and not an object property of the returned value from createCounter
+            // this will work if this.countis replaced with count
         },
         getCount: function(){
             return count
